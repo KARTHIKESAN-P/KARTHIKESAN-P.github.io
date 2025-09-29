@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream World - Fantasy RPG</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #1e0033;
+      color: white;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(30, 0, 51, 0.9);
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffce54;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+    }
+
+    .navbar ul li {
+      margin-left: 25px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #ff4081;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url("fantasy-bg.jpg") no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      color: #ff7043;
+      text-shadow: 0 0 20px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      margin: 20px 0;
+      font-size: 20px;
+      color: #eee;
+    }
+
+    .hero .btn {
+      padding: 15px 40px;
+      background: linear-gradient(90deg, #ff4081, #7c4dff);
+      color: white;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+
+    .hero .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #7c4dff, #ff4081);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 50px;
+      background: #2a004d;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 40px;
+      margin-bottom: 40px;
+      color: #ffce54;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #3c0066;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: #5e00a3;
+    }
+
+    /* Download Section */
+    .download {
+      padding: 80px 50px;
+      text-align: center;
+      background: linear-gradient(135deg, #7c4dff, #ff4081);
+    }
+
+    .download h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .download p {
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .download a {
+      padding: 15px 40px;
+      background: white;
+      color: #7c4dff;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+
+    .download a:hover {
+      background: #ffce54;
+      color: #1e0033;
+    }
+
+    /* Footer */
+    footer {
+      padding: 20px;
+      background: #1e0033;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #ff4081;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">🌌 Dream World</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+
+  <!-- Download -->
+  <section class="download" id="download">
+    <h2>Download the Game</h2>
+    <p>Get your adventure started by downloading Dream World today.</p>
+    <a href="your-app-file.zip" download>Download Now</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Dream World | <a href="#features">Features</a> | <a href="#download">Download</a> | <a href="#home">Back to Top</a></p>
+  </footer>
+
+</body>
+</html>

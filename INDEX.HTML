@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream World Game | Fantasy Adventure Awaits</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a35ff;
+            --secondary: #ff4d8d;
+            --dark: #1a0933;
+            --light: #f0e6ff;
+            --accent: #ffd700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-family: 'Fantasy', 'Copperplate', serif;
+            background: linear-gradient(to right, var(--accent), white);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.8rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1607513746994-51f730a44832?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(26,9,51,0.9), rgba(106,53,255,0.5));
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(106,53,255,0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(106,53,255,0.6);
+        }
+        
+        /* Game Features Section */
+        .features {
+            padding: 5rem 5%;
+            background-color: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border-color: var(--primary);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Play Now Section */
+        .play-now {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            text-align: center;
+        }
+        
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+        }
+        
+        .game-frame {
+            width: 100%;
+            height: 450px;
+            background: #000;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Game Canvas */
+        #gameCanvas {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2a0845, #6441a5);
+            cursor: pointer;
+        }
+        
+        .game-ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 1.2rem;
+            text-align: left;
+            padding: 5px 10px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 5px;
+        }
+        
+        .game-start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            z-index: 10;
+        }
+        
+        .game-start-screen h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .platform-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .platform-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .platform-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 5%;
+            background-color: var(--dark);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            text-align: center;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a0419;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.6rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="LOGO.png" alt="DWG LOGO">
+            <h1>Dream World</h1>
+        </div>
+        <nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#play">Play Now</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Embark on an Epic Fantasy Adventure</h2>
+            <p>Explore the vast magical realms of Dream World, where your imagination becomes reality. Battle fearsome creatures, uncover ancient secrets, and forge your own legend in this breathtaking open-world RPG.</p>
+            <a href="#play" class="cta-button">Play Now</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Game Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Open World</h3>
+                <p>Explore a massive, hand-crafted fantasy world with diverse landscapes, from enchanted forests to towering mountain ranges.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-ninja"></i>
+                </div>
+                <h3>Character Customization</h3>
+                <p>Create your unique hero with deep customization options including races, classes, skills, and appearance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <h3>Epic Battles</h3>
+                <p>Engage in thrilling combat against mythical creatures and powerful bosses with our dynamic battle system.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Multiplayer</h3>
+                <p>Team up with friends or compete against other players in our expansive online world.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Rich Storyline</h3>
+                <p>Immerse yourself in a deep narrative with branching quests and meaningful choices that shape your journey.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3>Magic System</h3>
+                <p>Master powerful spells and magical abilities with our innovative spell-crafting system.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Play Now Section -->
+    <section class="play-now" id="play">
+        <h2 class="section-title">Play Dream World Now</h2>
+        <div class="game-container">
+            <div class="game-frame">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-ui" id="gameStats">
+                    Score: 0 | Time: 60
+                </div>
+                <div class="game-start-screen" id="gameStartScreen">
+                    <h3>Dragon Egg Collector</h3>
+                    <p>Collect as many dragon eggs as you can in 60 seconds!</p>
+                    <button class="cta-button" id="startGameBtn">Start Game</button>
+                </div>
+            </div>
+            <div class="platform-buttons">
+                <button class="platform-btn">
+                    <i class="fab fa-windows"></i> PC
+                </button>
+                <button class="platform-btn">
+                    <i class="fab fa-playstation"></i> PlayStation
+                </button>
+                <button class="platform-btn">
+                    <i class="fab fa-xbox"></i> Xbox
+                </button>
+                <button class="platform-btn">
+                    <i class="fab fa-apple"></i> Mac
+                </button>
+                <button class="platform-btn">
+                    <i class="fas fa-mobile-alt"></i> Mobile
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Dream World Game Development</h2>
+                <p>Dream World Game Development is a passionate team of game designers, artists, and programmers dedicated to creating immersive fantasy experiences. Founded in 2018, we've grown from a small indie studio to a recognized name in the RPG genre.</p>
+                <p>Our mission is to craft games that transport players to magical worlds filled with wonder, adventure, and endless possibilities. Dream World is our most ambitious project yet, representing years of dedication and love for the fantasy genre.</p>
+                <p>Join our community of adventurers and become part of the Dream World legacy!</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Game Development Team">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/DWG_OFFICIAL" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-twitch"></i></a>
+        </div>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#play">Play Now</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Dream World Game Development. All rights reserved.</p>
+            <p>Contact email: <a href="mailto:DreamWorldGaminng@gmail.com">DreamWorldGaminng@gmail.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        document.querySelector('nav ul').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Form submission with validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                showAlert('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate form submission
+            setTimeout(() => {
+                showAlert('Thank you for your message! We will get back to you soon.', 'success');
+                this.reset();
+                
+                console.log('Form submitted:', { name, email, message });
+            }, 1000);
+        });
+        
+        // Email validation helper
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        // Alert notification system
+        function showAlert(message, type) {
+            const alertBox = document.createElement('div');
+            alertBox.className = `alert ${type}`;
+            alertBox.textContent = message;
+            
+            document.body.appendChild(alertBox);
+            
+            setTimeout(() => {
+                alertBox.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(alertBox);
+                }, 500);
+            }, 5000);
+        }
+        
+        // Platform button interactions
+        document.querySelectorAll('.platform-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const platform = this.textContent.trim();
+                showAlert(`Redirecting to ${platform} download...`, 'info');
+                console.log(`Selected platform: ${platform}`);
+            });
+        });
+        
+        // Responsive menu adjustment
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelector('nav ul').style.display = 'flex';
+            } else {
+                document.querySelector('nav ul').style.display = 'none';
+            }
+        });
+        
+        // Animation for feature cards on scroll
+        const featureCards = document.querySelectorAll('.feature-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        featureCards.forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Add CSS for new elements dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            .alert {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 8px;
+                color: white;
+                transform: translateX(200%);
+                transition: transform 0.5s ease;
+                z-index: 10000;
+            }
+            
+            .alert.show {
+                transform: translateX(0);
+            }
+            
+            .alert.success {
+                background-color: #4CAF50;
+            }
+            
+            .alert.error {
+                background-color: #F44336;
+            }
+            
+            .alert.info {
+                background-color: #2196F3;
+            }
+            
+            .feature-card.animate {
+                animation: cardFadeIn 0.8s ease forwards;
+            }
+            
+            @keyframes cardFadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        /* Dragon Egg Collector Game */
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gameStartScreen = document.getElementById('gameStartScreen');
+        const startGameBtn = document.getElementById('startGameBtn');
+        const gameStats = document.getElementById('gameStats');
+        
+        // Set canvas size
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        // Game variables
+        let score = 0;
+        let timeLeft = 60;
+        let gameActive = false;
+        let gameLoop;
+        let eggs = [];
+        let player = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            size: 30,
+            speed: 5
+        };
+        
+        // Egg class
+        class Egg {
+            constructor() {
+                this.size = Math.random() * 20 + 15;
+                this.x = Math.random() * (canvas.width - this.size);
+                this.y = Math.random() * (canvas.height - this.size);
+                this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                this.speedY = Math.random() * 2 + 1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.ellipse(this.x + this.size/2, this.y + this.size/2, this.size/2, this.size/1.5, 0, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                
+                // Add some egg details
+                ctx.beginPath();
+                ctx.ellipse(this.x + this.size/2, this.y + this.size/2, this.size/3, this.size/4, 0, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,255,255,0.3)';
+                ctx.fill();
+            }
+            
+            update() {
+                this.y += this.speedY;
+                
+                // If egg goes off screen, reset it
+                if (this.y > canvas.height) {
+                    this.y = 0 - this.size;
+                    this.x = Math.random() * (canvas.width - this.size);
+                }
+            }
+        }
+        
+        // Draw player (basket)
+        function drawPlayer() {
+            ctx.beginPath();
+            ctx.moveTo(player.x - player.size, player.y);
+            ctx.lineTo(player.x + player.size, player.y);
+            ctx.lineTo(player.x + player.size/2, player.y + player.size);
+            ctx.closePath();
+            ctx.fillStyle = '#ffd700';
+            ctx.fill();
+            
+            // Basket details
+            ctx.beginPath();
+            ctx.moveTo(player.x - player.size/2, player.y + player.size/3);
+            ctx.lineTo(player.x + player.size/2, player.y + player.size/3);
+            ctx.strokeStyle = '#8B4513';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        
+        // Check collision between player and egg
+        function checkCollision(egg) {
+            return (
+                player.x - player.size < egg.x + egg.size &&
+                player.x + player.size > egg.x &&
+                player.y < egg.y + egg.size &&
+                player.y + player.size > egg.y
+            );
+        }
+        
+        // Game loop
+        function gameUpdate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw eggs
+            eggs.forEach((egg, index) => {
+                egg.update();
+                egg.draw();
+                
+                // Check for collision
+                if (checkCollision(egg)) {
+                    score++;
+                    eggs.splice(index, 1);
+                    eggs.push(new Egg());
+                    gameStats.textContent = `Score: ${score} | Time: ${timeLeft}`;
+                }
+            });
+            
+            // Draw player
+            drawPlayer();
+            
+            // Update game stats
+            if (gameActive) {
+                gameStats.textContent = `Score: ${score} | Time: ${timeLeft}`;
+            }
+        }
+        
+        // Start game function
+        function startGame() {
+            gameStartScreen.style.display = 'none';
+            gameActive = true;
+            score = 0;
+            timeLeft = 60;
+            
+            // Create initial eggs
+            eggs = [];
+            for (let i = 0; i < 5; i++) {
+                eggs.push(new Egg());
+            }
+            
+            // Start game loop
+            gameLoop = setInterval(gameUpdate, 1000/60);
+            
+            // Start timer
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    clearInterval(gameLoop);
+                    gameActive = false;
+                    gameStartScreen.style.display = 'flex';
+                    gameStartScreen.innerHTML = `
+                        <h3>Game Over!</h3>
+                        <p>Your score: ${score}</p>
+                        <button class="cta-button" id="restartGameBtn">Play Again</button>
+                    `;
+                    document.getElementById('restartGameBtn').addEventListener('click', startGame);
+                }
+            }, 1000);
+        }
+        
+        // Event listeners
+        startGameBtn.addEventListener('click', startGame);
+        
+        // Mouse movement for player control
+        canvas.addEventListener('mousemove', (e) => {
+            if (gameActive) {
+                const rect = canvas.getBoundingClientRect();
+                player.x = e.clientX - rect.left;
+            }
+        });
+        
+        // Touch movement for mobile
+        canvas.addEventListener('touchmove', (e) => {
+            if (gameActive) {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                player.x = e.touches[0].clientX - rect.left;
+            }
+        }, { passive: false });
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        });
+    </script>
+</body>
+</html><header>
+    <a href="#home" class="logo">
+        <!-- Logo will be inserted here by JavaScript -->
+        <!-- Or you can use an image if you prefer -->
+        <!-- <img src="path-to-your-logo-image.png" alt="Dream World Gaming Logo"> -->
+    </a>
+    <nav>
+        <!-- Your navigation items here -->
+    </nav>
+</header>
